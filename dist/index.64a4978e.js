@@ -583,7 +583,30 @@ var _nebulaJpg = require("../img/nebula.jpg");
 var _nebulaJpgDefault = parcelHelpers.interopDefault(_nebulaJpg);
 var _starsJpg = require("../img/stars.jpg");
 var _starsJpgDefault = parcelHelpers.interopDefault(_starsJpg);
-const monkeyUrl = new URL(require("46d709d3e4bdc395"));
+var _sunJpg = require("../img/sun.jpg");
+var _sunJpgDefault = parcelHelpers.interopDefault(_sunJpg);
+var _mercuryJpg = require("../img/mercury.jpg");
+var _mercuryJpgDefault = parcelHelpers.interopDefault(_mercuryJpg);
+var _venusJpg = require("../img/venus.jpg");
+var _venusJpgDefault = parcelHelpers.interopDefault(_venusJpg);
+var _earthJpg = require("../img/earth.jpg");
+var _earthJpgDefault = parcelHelpers.interopDefault(_earthJpg);
+var _marsJpg = require("../img/mars.jpg");
+var _marsJpgDefault = parcelHelpers.interopDefault(_marsJpg);
+var _jupiterJpg = require("../img/jupiter.jpg");
+var _jupiterJpgDefault = parcelHelpers.interopDefault(_jupiterJpg);
+var _saturnJpg = require("../img/saturn.jpg");
+var _saturnJpgDefault = parcelHelpers.interopDefault(_saturnJpg);
+var _saturnRingPng = require("../img/saturn ring.png");
+var _saturnRingPngDefault = parcelHelpers.interopDefault(_saturnRingPng);
+var _uranusJpg = require("../img/uranus.jpg");
+var _uranusJpgDefault = parcelHelpers.interopDefault(_uranusJpg);
+var _uranusRingPng = require("../img/uranus ring.png");
+var _uranusRingPngDefault = parcelHelpers.interopDefault(_uranusRingPng);
+var _neptuneJpg = require("../img/neptune.jpg");
+var _neptuneJpgDefault = parcelHelpers.interopDefault(_neptuneJpg);
+var _plutoJpg = require("../img/pluto.jpg");
+var _plutoJpgDefault = parcelHelpers.interopDefault(_plutoJpg);
 const renderer = new _three.WebGLRenderer();
 renderer.shadowMap.enabled = true;
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -591,179 +614,91 @@ document.body.appendChild(renderer.domElement);
 const scene = new _three.Scene();
 const camera = new _three.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
 const orbit = new (0, _orbitControls.OrbitControls)(camera, renderer.domElement);
-const axesHelper = new _three.AxesHelper(5);
-scene.add(axesHelper);
-camera.position.set(-10, 30, 30);
+camera.position.set(-90, 140, 140);
 orbit.update();
-const boxGeometry = new _three.BoxGeometry();
-const boxMaterial = new _three.MeshBasicMaterial({
-    color: 0x00ff00
-});
-const box = new _three.Mesh(boxGeometry, boxMaterial);
-scene.add(box);
-const planeGeometry = new _three.PlaneGeometry(30, 30);
-const planeMaterial = new _three.MeshStandardMaterial({
-    color: 0xffffff,
-    side: _three.DoubleSide
-});
-const plane = new _three.Mesh(planeGeometry, planeMaterial);
-scene.add(plane);
-plane.rotation.x = -Math.PI / 2;
-plane.receiveShadow = true;
-const gridHelper = new _three.GridHelper(30);
-scene.add(gridHelper);
-const sphereGeometry = new _three.SphereGeometry(4, 50, 50);
-const sphereMaterial = new _three.MeshStandardMaterial({
-    color: 0x0000ff,
-    wireframe: false
-});
-const sphere = new _three.Mesh(sphereGeometry, sphereMaterial);
-scene.add(sphere);
-sphere.position.set(-10, 10, 0);
-sphere.castShadow = true;
 const ambientLight = new _three.AmbientLight(0x333333);
 scene.add(ambientLight);
-// const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-// scene.add(directionalLight);
-// directionalLight.position.set(-30, 50, 0);
-// directionalLight.castShadow = true;
-// directionalLight.shadow.camera.bottom = -12;
-// const dLightHelper = new THREE.DirectionalLightHelper(directionalLight, 5);
-// scene.add(dLightHelper);
-// const dLightShadowHelper = new THREE.CameraHelper(
-//   directionalLight.shadow.camera
-// );
-// scene.add(dLightShadowHelper);
-const spotLight = new _three.SpotLight(0xffffff);
-scene.add(spotLight);
-spotLight.position.set(-100, 100, 0);
-spotLight.castShadow = true;
-spotLight.angle = 0.2;
-const sLightHelper = new _three.SpotLightHelper(spotLight);
-scene.add(sLightHelper);
-// scene.fog = new THREE.Fog(0xffffff, 0, 200);
-scene.fog = new _three.FogExp2(0xffffff, 0.01);
-// renderer.setClearColor(0xffea00);
-const textureLoader = new _three.TextureLoader();
 const cubeTextureLoader = new _three.CubeTextureLoader();
 scene.background = cubeTextureLoader.load([
-    (0, _nebulaJpgDefault.default),
-    (0, _nebulaJpgDefault.default),
+    (0, _starsJpgDefault.default),
+    (0, _starsJpgDefault.default),
     (0, _starsJpgDefault.default),
     (0, _starsJpgDefault.default),
     (0, _starsJpgDefault.default),
     (0, _starsJpgDefault.default)
 ]);
-const box2Geometry = new _three.BoxGeometry(4, 4, 4);
-const box2Material = new _three.MeshStandardMaterial({
+const textureLoader = new _three.TextureLoader();
+const sunGeo = new _three.SphereGeometry(16, 30, 30);
+const sunMat = new _three.MeshBasicMaterial({
+    map: textureLoader.load((0, _sunJpgDefault.default))
 });
-const box2MultiMaterial = [
-    new _three.MeshStandardMaterial({
-        map: textureLoader.load((0, _starsJpgDefault.default))
-    }),
-    new _three.MeshStandardMaterial({
-        map: textureLoader.load((0, _starsJpgDefault.default))
-    }),
-    new _three.MeshStandardMaterial({
-        map: textureLoader.load((0, _nebulaJpgDefault.default))
-    }),
-    new _three.MeshStandardMaterial({
-        map: textureLoader.load((0, _starsJpgDefault.default))
-    }),
-    new _three.MeshStandardMaterial({
-        map: textureLoader.load((0, _nebulaJpgDefault.default))
-    }),
-    new _three.MeshStandardMaterial({
-        map: textureLoader.load((0, _starsJpgDefault.default))
-    })
-];
-const box2 = new _three.Mesh(box2Geometry, box2MultiMaterial);
-scene.add(box2);
-// box2.material.map = textureLoader.load(nebular);
-box2.position.set(0, 15, 10);
-const plane2Geometry = new _three.PlaneGeometry(10, 10, 10, 10);
-const plane2Material = new _three.MeshStandardMaterial({
-    color: 0xffffff,
-    wireframe: true
-});
-const plane2 = new _three.Mesh(plane2Geometry, plane2Material);
-scene.add(plane2);
-plane2.position.set(10, 10, 15);
-const lastPointZ = plane2.geometry.attributes.position.array.length - 1;
-const sphere2Geometry = new _three.SphereGeometry(4, 50, 50);
-// const vShader = `
-//     void main() {
-//         gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-//     }
-// `;
-// const fShader = `
-//     void main() {
-//         gl_FragColor = vec4(0.5, 0.5, 1.0, 1.0);
-//     }
-// `;
-const sphere2Material = new _three.ShaderMaterial({
-    vertexShader: document.getElementById("vertextShader")?.textContent,
-    fragmentShader: document.getElementById("fragmentShader")?.textContent
-});
-const sphere2 = new _three.Mesh(sphere2Geometry, sphere2Material);
-scene.add(sphere2);
-sphere2.position.set(-5, 10, 10);
-const assetLoader = new (0, _gltfloader.GLTFLoader)();
-assetLoader.load(monkeyUrl.href, function(gltf) {
-    const model = gltf.scene;
-    scene.add(model);
-    model.position.set(-12, 4, 10);
-}, undefined, function(error) {
-    console.log(error);
-});
-const gui = new _datGui.GUI();
-const options = {
-    sphereColor: "#ffea00",
-    wireframe: false,
-    speed: 0.01,
-    angle: 0.2,
-    penumbra: 0,
-    intensity: 1
-};
-gui.addColor(options, "sphereColor").onChange((e)=>{
-    sphere.material.color.set(e);
-});
-gui.add(options, "wireframe").onChange((e)=>{
-    sphere.material.wireframe = e;
-});
-gui.add(options, "speed", 0, 0.1);
-gui.add(options, "angle", 0, 1);
-gui.add(options, "penumbra", 0, 1);
-gui.add(options, "intensity", 0, 1);
-let step = 0;
-const mousePosition = new _three.Vector2();
-window.addEventListener("mousemove", (e)=>{
-    mousePosition.x = e.clientX / window.innerWidth * 2 - 1;
-    mousePosition.y = -(e.clientY / window.innerHeight) * 2 + 1;
-});
-const rayCaster = new _three.Raycaster();
-const sphereId = sphere.id;
-box2.name = "theBox";
-function animate(time) {
-    box.rotation.x = time / 1000;
-    box.rotation.y = time / 1000;
-    step += options.speed;
-    sphere.position.y = 10 * Math.abs(Math.sin(step));
-    spotLight.angle = options.angle;
-    spotLight.penumbra = options.penumbra;
-    spotLight.intensity = options.intensity;
-    rayCaster.setFromCamera(mousePosition, camera);
-    const intersects = rayCaster.intersectObjects(scene.children);
-    for(let i = 0; i < intersects.length; i++){
-        if (intersects[i].object.id === sphereId) intersects[i].object.material.color.set(0xff0000);
-        if (intersects[i].object.name === "theBox") {
-            intersects[i].object.rotation.x = time / 1000;
-            intersects[i].object.rotation.y = time / 1000;
-        }
+const sun = new _three.Mesh(sunGeo, sunMat);
+scene.add(sun);
+function createPlanete(size, texture, position, ring) {
+    const geo = new _three.SphereGeometry(size, 30, 30);
+    const mat = new _three.MeshStandardMaterial({
+        map: textureLoader.load(texture)
+    });
+    const mesh = new _three.Mesh(geo, mat);
+    const obj = new _three.Object3D();
+    obj.add(mesh);
+    if (ring) {
+        const ringGeo = new _three.RingGeometry(ring.innerRadius, ring.outerRadius, 32);
+        const ringMat = new _three.MeshBasicMaterial({
+            map: textureLoader.load(ring.texture),
+            side: _three.DoubleSide
+        });
+        const ringMesh = new _three.Mesh(ringGeo, ringMat);
+        obj.add(ringMesh);
+        ringMesh.position.x = position;
+        ringMesh.rotation.x = -Math.PI / 2;
     }
-    plane2.geometry.attributes.position.setXYZ(0, 10 * Math.random(), 10 * Math.random(), 10 * Math.random());
-    plane2.geometry.attributes.position.setX(lastPointZ / 3, 10 * Math.random());
-    plane2.geometry.attributes.position.needsUpdate = true;
+    scene.add(obj);
+    mesh.position.x = position;
+    return {
+        mesh,
+        obj
+    };
+}
+const mercury = createPlanete(3.2, (0, _mercuryJpgDefault.default), 28);
+const venus = createPlanete(5.8, (0, _venusJpgDefault.default), 44);
+const earth = createPlanete(6, (0, _earthJpgDefault.default), 62);
+const mars = createPlanete(4, (0, _marsJpgDefault.default), 78);
+const jupiter = createPlanete(12, (0, _jupiterJpgDefault.default), 100);
+const saturn = createPlanete(10, (0, _saturnJpgDefault.default), 138, {
+    innerRadius: 10,
+    outerRadius: 20,
+    texture: (0, _saturnRingPngDefault.default)
+});
+const uranus = createPlanete(8, (0, _uranusJpgDefault.default), 176, {
+    innerRadius: 7,
+    outerRadius: 12,
+    texture: (0, _uranusRingPngDefault.default)
+});
+const neptune = createPlanete(7, (0, _neptuneJpgDefault.default), 200);
+const pluto = createPlanete(2.8, (0, _plutoJpgDefault.default), 216);
+const pointLight = new _three.PointLight(0xffffff, 2, 300);
+scene.add(pointLight);
+function animate() {
+    sun.rotateY(0.004);
+    mercury.mesh.rotateY(0.004);
+    mercury.obj.rotateY(0.04);
+    venus.mesh.rotateY(0.002);
+    venus.obj.rotateY(0.015);
+    earth.mesh.rotateY(0.02);
+    earth.obj.rotateY(0.01);
+    mars.mesh.rotateY(0.018);
+    mars.obj.rotateY(0.008);
+    jupiter.mesh.rotateY(0.04);
+    jupiter.obj.rotateY(0.002);
+    saturn.mesh.rotateY(0.038);
+    saturn.obj.rotateY(0.0009);
+    uranus.mesh.rotateY(0.03);
+    uranus.obj.rotateY(0.0004);
+    neptune.mesh.rotateY(0.032);
+    neptune.obj.rotateY(0.0001);
+    pluto.mesh.rotateY(0.008);
+    pluto.obj.rotateY(0.00007);
     renderer.render(scene, camera);
 }
 renderer.setAnimationLoop(animate);
@@ -773,7 +708,7 @@ window.addEventListener("resize", ()=>{
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-},{"three":"ktPTu","three/examples/jsm/controls/OrbitControls":"7mqRv","dat.gui":"k3xQk","../img/nebula.jpg":"kmPen","../img/stars.jpg":"29qHg","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","46d709d3e4bdc395":"fQn5k","three/examples/jsm/loaders/GLTFLoader":"dVRsF"}],"ktPTu":[function(require,module,exports) {
+},{"three":"ktPTu","three/examples/jsm/controls/OrbitControls":"7mqRv","dat.gui":"k3xQk","three/examples/jsm/loaders/GLTFLoader":"dVRsF","../img/nebula.jpg":"kmPen","../img/stars.jpg":"29qHg","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../img/sun.jpg":"47mIl","../img/mercury.jpg":"6b1vk","../img/venus.jpg":"bMK2X","../img/earth.jpg":"f9D2E","../img/mars.jpg":"kYkQF","../img/jupiter.jpg":"6HVCV","../img/saturn.jpg":"khmIb","../img/saturn ring.png":"kwdQE","../img/uranus.jpg":"aq0p1","../img/uranus ring.png":"l53fJ","../img/neptune.jpg":"e6Qjg","../img/pluto.jpg":"ixkz8"}],"ktPTu":[function(require,module,exports) {
 /**
  * @license
  * Copyright 2010-2023 Three.js Authors
@@ -33693,51 +33628,7 @@ var index = {
 };
 exports.default = index;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kmPen":[function(require,module,exports) {
-module.exports = require("ad5cd9c59dab36b9").getBundleURL("e6MYJ") + "nebula.a535bdf2.jpg" + "?" + Date.now();
-
-},{"ad5cd9c59dab36b9":"lgJ39"}],"lgJ39":[function(require,module,exports) {
-"use strict";
-var bundleURL = {};
-function getBundleURLCached(id) {
-    var value = bundleURL[id];
-    if (!value) {
-        value = getBundleURL();
-        bundleURL[id] = value;
-    }
-    return value;
-}
-function getBundleURL() {
-    try {
-        throw new Error();
-    } catch (err) {
-        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
-        if (matches) // The first two stack frames will be this function and getBundleURLCached.
-        // Use the 3rd one, which will be a runtime in the original bundle.
-        return getBaseURL(matches[2]);
-    }
-    return "/";
-}
-function getBaseURL(url) {
-    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
-}
-// TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
-function getOrigin(url) {
-    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
-    if (!matches) throw new Error("Origin not found");
-    return matches[0];
-}
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-exports.getOrigin = getOrigin;
-
-},{}],"29qHg":[function(require,module,exports) {
-module.exports = require("2ff80aa81fbd0f0b").getBundleURL("e6MYJ") + "stars.a1d7fe60.jpg" + "?" + Date.now();
-
-},{"2ff80aa81fbd0f0b":"lgJ39"}],"fQn5k":[function(require,module,exports) {
-module.exports = require("91579b0cdf68aaca").getBundleURL("e6MYJ") + "monkey.d5659f94.glb" + "?" + Date.now();
-
-},{"91579b0cdf68aaca":"lgJ39"}],"dVRsF":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dVRsF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "GLTFLoader", ()=>GLTFLoader);
@@ -36763,6 +36654,83 @@ function mergeBufferAttributes(attributes) {
     return mergeAttributes(attributes);
 }
 
-},{"three":"ktPTu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["4FhkU","goJYj"], "goJYj", "parcelRequire2f4f")
+},{"three":"ktPTu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kmPen":[function(require,module,exports) {
+module.exports = require("ad5cd9c59dab36b9").getBundleURL("e6MYJ") + "nebula.a535bdf2.jpg" + "?" + Date.now();
+
+},{"ad5cd9c59dab36b9":"lgJ39"}],"lgJ39":[function(require,module,exports) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return "/";
+}
+function getBaseURL(url) {
+    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
+}
+// TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error("Origin not found");
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}],"29qHg":[function(require,module,exports) {
+module.exports = require("2ff80aa81fbd0f0b").getBundleURL("e6MYJ") + "stars.a1d7fe60.jpg" + "?" + Date.now();
+
+},{"2ff80aa81fbd0f0b":"lgJ39"}],"47mIl":[function(require,module,exports) {
+module.exports = require("8dcedc82fe845a6b").getBundleURL("e6MYJ") + "sun.a08d7ba3.jpg" + "?" + Date.now();
+
+},{"8dcedc82fe845a6b":"lgJ39"}],"6b1vk":[function(require,module,exports) {
+module.exports = require("88753cbb2b32bbf1").getBundleURL("e6MYJ") + "mercury.e64be2d9.jpg" + "?" + Date.now();
+
+},{"88753cbb2b32bbf1":"lgJ39"}],"bMK2X":[function(require,module,exports) {
+module.exports = require("fcbee65ec877fcec").getBundleURL("e6MYJ") + "venus.c3875816.jpg" + "?" + Date.now();
+
+},{"fcbee65ec877fcec":"lgJ39"}],"f9D2E":[function(require,module,exports) {
+module.exports = require("e14f07a0af98e9c1").getBundleURL("e6MYJ") + "earth.0431f8a5.jpg" + "?" + Date.now();
+
+},{"e14f07a0af98e9c1":"lgJ39"}],"kYkQF":[function(require,module,exports) {
+module.exports = require("95de45232cb72d84").getBundleURL("e6MYJ") + "mars.39828838.jpg" + "?" + Date.now();
+
+},{"95de45232cb72d84":"lgJ39"}],"6HVCV":[function(require,module,exports) {
+module.exports = require("682f1330ca936d98").getBundleURL("e6MYJ") + "jupiter.970a44f9.jpg" + "?" + Date.now();
+
+},{"682f1330ca936d98":"lgJ39"}],"khmIb":[function(require,module,exports) {
+module.exports = require("67cb50b0cd90d37").getBundleURL("e6MYJ") + "saturn.f0999ace.jpg" + "?" + Date.now();
+
+},{"67cb50b0cd90d37":"lgJ39"}],"kwdQE":[function(require,module,exports) {
+module.exports = require("92dcc143822cc852").getBundleURL("e6MYJ") + "saturn ring.cc9fe67e.png" + "?" + Date.now();
+
+},{"92dcc143822cc852":"lgJ39"}],"aq0p1":[function(require,module,exports) {
+module.exports = require("63ea7aa1730e52ac").getBundleURL("e6MYJ") + "uranus.03f8200b.jpg" + "?" + Date.now();
+
+},{"63ea7aa1730e52ac":"lgJ39"}],"l53fJ":[function(require,module,exports) {
+module.exports = require("f0ce97cd3788893a").getBundleURL("e6MYJ") + "uranus ring.bb04d0b4.png" + "?" + Date.now();
+
+},{"f0ce97cd3788893a":"lgJ39"}],"e6Qjg":[function(require,module,exports) {
+module.exports = require("8b16154fc2edacb8").getBundleURL("e6MYJ") + "neptune.69b29d20.jpg" + "?" + Date.now();
+
+},{"8b16154fc2edacb8":"lgJ39"}],"ixkz8":[function(require,module,exports) {
+module.exports = require("20faa69c4953343e").getBundleURL("e6MYJ") + "pluto.cc2d7afe.jpg" + "?" + Date.now();
+
+},{"20faa69c4953343e":"lgJ39"}]},["4FhkU","goJYj"], "goJYj", "parcelRequire2f4f")
 
 //# sourceMappingURL=index.64a4978e.js.map
