@@ -1,0 +1,27 @@
+{
+  "name": "threetut",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yzydxlp/threetut.git"
+  },
+  "author": "jerome",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yzydxlp/threetut/issues"
+  },
+  "homepage": "https://github.com/yzydxlp/threetut#readme",
+  "devDependencies": {
+    "parcel": "^2.9.3"
+  },
+  "dependencies": {
+    "@types/three": "^0.153.0",
+    "dat.gui": "^0.7.9",
+    "three": "^0.154.0"
+  }
+}
